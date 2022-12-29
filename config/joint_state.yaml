@@ -1,0 +1,9 @@
+joint_state_merger:
+  ros__parameters:
+    rate: 50
+    ignore_timestamp: false
+    publish_default_efforts: true
+    publish_default_velocities: true
+    publish_default_posiitons: true
+    source_list:
+      - simulator/joint_states

@@ -1,0 +1,63 @@
+quadruped_controller_node:
+  ros__parameters:
+    use_sim_time: true
+    publish_foot_contacts: true
+    publish_joint_states: true
+    publish_joint_control: true
+    gazebo: true
+    loop_rate: 50.0
+    gait:
+      knee_orientation: ">>"
+      pantograph_leg: false
+      odom_scaler: 1.0
+      max_linear_velocity_x: 0.3
+      max_linear_velocity_y: 0.3
+      max_angular_velocity_z: 0.75
+      com_x_translation: 0.04
+      swing_height: 0.04
+      stance_depth: 0.01
+      stance_duration: 0.325
+      nominal_height: 0.25
+    links_map:
+      base: base_link
+      left_front:
+        - fl_hip
+        - fl_thigh
+        - fl_calf
+        - fl_foot
+      right_front:
+        - fr_hip
+        - fr_thigh
+        - fr_calf
+        - fr_foot
+      left_hind:
+        - rl_hip
+        - rl_thigh
+        - rl_calf
+        - rl_foot
+      right_hind:
+        - rr_hip
+        - rr_thigh
+        - rr_calf
+        - rr_foot
+    joints_map:
+      left_front:
+        - fl_hip_joint
+        - fl_thigh_joint
+        - fl_calf_joint
+        - fl_foot_joint
+      right_front:
+        - fr_hip_joint
+        - fr_thigh_joint
+        - fr_calf_joint
+        - fr_foot_joint
+      left_hind:
+        - rl_hip_joint
+        - rl_thigh_joint
+        - rl_calf_joint
+        - rl_foot_joint
+      right_hind:
+        - rr_hip_joint
+        - rr_thigh_joint
+        - rr_calf_joint
+        - rr_foot_joint
