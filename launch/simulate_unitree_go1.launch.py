@@ -27,9 +27,14 @@ def generate_declare_launch_arguments():
         ),
         launch.actions.DeclareLaunchArgument(
             'world_name',
-            default_value = ['checker_ground_plane'],
+            default_value = ['checker_ground_plane_with_obstacle'],
             description = 'Simulation world name (string)'
         ),
+        launch.actions.DeclareLaunchArgument(
+            'debug',
+            default_value=['false'],
+            description='Enable debug output (boolean)'
+        )
     ]
 
 def generate_launch_nodes():
@@ -42,6 +47,16 @@ def generate_launch_nodes():
     simulator_namespace = 'simulator'
     use_sim_time = launch.substitutions.LaunchConfiguration('use_sim_time')
     world_name = launch.substitutions.LaunchConfiguration('world_name')
+
+    # Mesh file
+    resource_package_name = go1_description_share_dir
+    # URDF file
+    model_resource_path = os.path.join(
+        go1_description_share_dir,
+        'urdf'
+    )
+    # this package world direcotry
+    world_path = os.path.join(this_pkg_share_dir, 'worlds', 'ignition')
 
     return [
         launch.actions.IncludeLaunchDescription(
@@ -79,7 +94,10 @@ def generate_launch_nodes():
                 'namespace': simulator_namespace,
                 'use_sim_time': use_sim_time,
                 'world_name': world_name,
-                'resource_package_name': go1_description_share_dir
+                'resource_package_name': resource_package_name,
+                'model_resource_path': model_resource_path,
+                'world_path': world_path,
+                'debug': launch.substitutions.LaunchConfiguration('debug')
             }.items()
         ),
         launch.actions.IncludeLaunchDescription(
