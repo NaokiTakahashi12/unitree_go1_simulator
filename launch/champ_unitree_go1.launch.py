@@ -113,8 +113,16 @@ def generate_launch_nodes():
             ],
             remappings = [
                 ('cmd_vel/smooth', 'cmd_vel'),
-                ('joint_group_position_controller/command', 'joint_trajectory_controller/joint_trajectory'),
                 ('joint_states', '~/joint_states')
+            ]
+        ),
+        launch_ros.actions.Node(
+            package = 'unitree_go1_simulator',
+            executable = 'joint_trajectory_update_timestamp_node',
+            name = 'joint_trajectory_update_timestamp',
+            output = output,
+            parameters = [
+                use_sim_time,
             ]
         )
     ]

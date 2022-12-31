@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="checker_ground_plane_with_obstacle">
+    <physics name="1.0ms" type="ignored">
+      <max_step_size>1.0e-3</max_step_size>
+      <real_time_factor>1.25</real_time_factor>
+      <dart>
+        <collision_detector>bullet</collision_detector>
+        <solver>
+          <solver_type>dantzig</solver_type>
+        </solver>
+      </dart>
+    </physics>
+    <plugin filename="libignition-gazebo-physics-system.so" name="ignition::gazebo::systems::Physics">
+      <engine>
+        <filename>libignition-physics-dartsim-plugin.so</filename>
+      </engine>
+    </plugin>
+    <plugin filename="libignition-gazebo-user-commands-system.so" name="ignition::gazebo::systems::UserCommands"/>
+    <plugin filename="libignition-gazebo-scene-broadcaster-system.so" name="ignition::gazebo::systems::SceneBroadcaster"/>
+    <scene>
+      <ambient>1.0 1.0 1.0</ambient>
+      <background>0.8 0.8 0.8</background>
+      <shadows>true</shadows>
+      <sky/>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>-23</latitude_deg>
+      <longitude_deg>-43</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <light type="directional" name="sun">
+      <pose>0 0 50 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.9</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <include>
+      <name>checker_ground_plane</name>
+      <uri>checker_ground_plane</uri>
+      <pose>0 0 0.09 0 0 0</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>pallet_1</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>2.5 2.5 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>pallet_2</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>-2.5 2.5 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>pallet_3</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>2.5 5 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>pallet_4</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>-2.5 5 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>pallet_5</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>2.5 7.5 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>pallet_6</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>-2.5 7.5 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>pallet_7</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>2.5 10 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>pallet_8</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>-2.5 10 0.1 0 0 0</pose>
+    </include>
+    <include>
+      <name>pallet_9</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>-0 5 0.1 0 0 0</pose>
+    </include>
+    <include>
+      <name>pallet_10</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>5 7.5 0.1 0 0 0</pose>
+    </include>
+    <include>
+      <name>pallet_11</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/pallet</uri>
+      <pose>-5 7.5 0.1 0 0 0</pose>
+    </include>
+    <include>
+      <name>shelf_1</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf</uri>
+      <pose>5 0 0 0 0 1.57</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_2</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf</uri>
+      <pose>5 -5 0 0 0 1.57</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_3</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf</uri>
+      <pose>5 -10 0 0 0 1.57</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_4</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf</uri>
+      <pose>5 -15 0 0 0 1.57</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_5</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf</uri>
+      <pose>-5 0 0 0 0 1.57</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_6</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf</uri>
+      <pose>-5 -5 0 0 0 1.57</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_7</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf</uri>
+      <pose>-5 -10 0 0 0 1.57</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_8</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf</uri>
+      <pose>-5 -15 0 0 0 1.57</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_big_1</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf_big</uri>
+      <pose>-10 10 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_big_2</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf_big</uri>
+      <pose>-10 -10 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_big_3</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf_big</uri>
+      <pose>10 10 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>shelf_big_4</name>
+      <uri>https://fuel.gazebosim.org/1.0/MovAi/models/shelf_big</uri>
+      <pose>10 -10 0.1 0 0 0</pose>
+      <static>false</static>
+    </include>
+    <include>
+      <name>warehouse_1</name>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Warehouse</uri>
+      <pose>-0 0 0 0 0 0</pose>
+      <static>true</static>
+    </include>
+    <!--
+    <include>
+      <name>depot</name>
+      <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Finals Staging Area</uri>
+      <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Fiducial</uri>
+      <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Depot</uri>
+      <pose>0 0 0 0 0 0</pose>
+      <static>true</static>
+    </include>
+    -->
+  </world>
+</sdf>
