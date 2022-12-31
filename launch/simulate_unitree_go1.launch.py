@@ -26,6 +26,11 @@ def generate_declare_launch_arguments():
             description = 'Use simulation time (boolean)'
         ),
         launch.actions.DeclareLaunchArgument(
+            'use_rviz',
+            default_value=['true'],
+            description='Using rviz2 (boolean)'
+        ),
+        launch.actions.DeclareLaunchArgument(
             'world_name',
             default_value = ['checker_ground_plane_with_obstacle'],
             description = 'Simulation world name (string)'
@@ -77,6 +82,7 @@ def generate_launch_nodes():
                     )
                 ],
                 'use_sim_time': use_sim_time,
+                'use_rviz': launch.substitutions.LaunchConfiguration('use_rviz'),
                 'enable_ros2_control': 'true',
                 'use_real_hardware': 'false',
                 'ignition_gazebo': 'true'
@@ -182,6 +188,23 @@ def generate_launch_nodes():
                     os.path.join(
                         ros_gz_utils_share_dir,
                         'launch',
+                        'ignition_image_bridge.launch.py'
+                    )
+                ),
+                launch_arguments = {
+                    'with_stf': 'false',
+                    'ign_topic': [
+                        '/world/', world_name, '/model/unitree_go1',
+                        '/link/base_link/sensor/camera_face_camera/image'
+                    ],
+                    'ros_topic': 'face_camera/image'
+                }.items()
+            ),
+            launch.actions.IncludeLaunchDescription(
+                launch.launch_description_sources.AnyLaunchDescriptionSource(
+                    os.path.join(
+                        ros_gz_utils_share_dir,
+                        'launch',
                         'ignition_bridge.launch.py'
                     )
                 ),
@@ -230,6 +253,23 @@ def generate_launch_nodes():
                         '/link/base_link/sensor/camera_left_camera/depth_image'
                     ],
                     'ros_topic': 'left_camera/depth_image'
+                }.items()
+            ),
+            launch.actions.IncludeLaunchDescription(
+                launch.launch_description_sources.AnyLaunchDescriptionSource(
+                    os.path.join(
+                        ros_gz_utils_share_dir,
+                        'launch',
+                        'ignition_image_bridge.launch.py'
+                    )
+                ),
+                launch_arguments = {
+                    'with_stf': 'false',
+                    'ign_topic': [
+                        '/world/', world_name, '/model/unitree_go1',
+                        '/link/base_link/sensor/camera_left_camera/image'
+                    ],
+                    'ros_topic': 'left_camera/image'
                 }.items()
             ),
             launch.actions.IncludeLaunchDescription(
@@ -292,6 +332,23 @@ def generate_launch_nodes():
                     os.path.join(
                         ros_gz_utils_share_dir,
                         'launch',
+                        'ignition_image_bridge.launch.py'
+                    )
+                ),
+                launch_arguments = {
+                    'with_stf': 'false',
+                    'ign_topic': [
+                        '/world/', world_name, '/model/unitree_go1',
+                        '/link/base_link/sensor/camera_right_camera/image'
+                    ],
+                    'ros_topic': 'right_camera/image'
+                }.items()
+            ),
+            launch.actions.IncludeLaunchDescription(
+                launch.launch_description_sources.AnyLaunchDescriptionSource(
+                    os.path.join(
+                        ros_gz_utils_share_dir,
+                        'launch',
                         'ignition_bridge.launch.py'
                     )
                 ),
@@ -340,6 +397,23 @@ def generate_launch_nodes():
                         '/link/base_link/sensor/camera_chin_camera/depth_image'
                     ],
                     'ros_topic': 'chin_camera/depth_image'
+                }.items()
+            ),
+            launch.actions.IncludeLaunchDescription(
+                launch.launch_description_sources.AnyLaunchDescriptionSource(
+                    os.path.join(
+                        ros_gz_utils_share_dir,
+                        'launch',
+                        'ignition_image_bridge.launch.py'
+                    )
+                ),
+                launch_arguments = {
+                    'with_stf': 'false',
+                    'ign_topic': [
+                        '/world/', world_name, '/model/unitree_go1',
+                        '/link/base_link/sensor/camera_chin_camera/image'
+                    ],
+                    'ros_topic': 'chin_camera/image'
                 }.items()
             ),
             launch.actions.IncludeLaunchDescription(
@@ -402,6 +476,23 @@ def generate_launch_nodes():
                     os.path.join(
                         ros_gz_utils_share_dir,
                         'launch',
+                        'ignition_image_bridge.launch.py'
+                    )
+                ),
+                launch_arguments = {
+                    'with_stf': 'false',
+                    'ign_topic': [
+                        '/world/', world_name, '/model/unitree_go1',
+                        '/link/base_link/sensor/camera_rearDown_camera/image'
+                    ],
+                    'ros_topic': 'rearDown_camera/image'
+                }.items()
+            ),
+            launch.actions.IncludeLaunchDescription(
+                launch.launch_description_sources.AnyLaunchDescriptionSource(
+                    os.path.join(
+                        ros_gz_utils_share_dir,
+                        'launch',
                         'ignition_bridge.launch.py'
                     )
                 ),
@@ -435,66 +526,67 @@ def generate_launch_nodes():
                     'convert_args': 'sensor_msgs/msg/Imu[ignition.msgs.IMU',
                 }.items()
             ),
-            launch.actions.IncludeLaunchDescription(
-                launch.launch_description_sources.AnyLaunchDescriptionSource(
-                    os.path.join(
-                        ros_gz_utils_share_dir,
-                        'launch',
-                        'ignition_bridge.launch.py'
-                    )
-                ),
-                launch_arguments = {
-                    'with_stf': 'true',
-                    'ign_frame_id': 'unitree_go1/base_link/ultrasound_face_sensor',
-                    'ros_frame_id': 'ultraSound_face',
-                    'ign_topic': [
-                        '/world/', world_name, '/model/unitree_go1',
-                        '/link/base_link/sensor/ultrasound_face_sensor/scan/points'
-                    ],
-                    'ros_topic': 'face_ultrasound/points',
-                    'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked',
-                }.items()
-            ),
-            launch.actions.IncludeLaunchDescription(
-                launch.launch_description_sources.AnyLaunchDescriptionSource(
-                    os.path.join(
-                        ros_gz_utils_share_dir,
-                        'launch',
-                        'ignition_bridge.launch.py'
-                    )
-                ),
-                launch_arguments = {
-                    'with_stf': 'true',
-                    'ign_frame_id': 'unitree_go1/base_link/ultrasound_left_sensor',
-                    'ros_frame_id': 'ultraSound_left',
-                    'ign_topic': [
-                        '/world/', world_name, '/model/unitree_go1',
-                        '/link/base_link/sensor/ultrasound_left_sensor/scan/points'
-                    ],
-                    'ros_topic': 'left_ultrasound/points',
-                    'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked',
-                }.items()
-            ),
-            launch.actions.IncludeLaunchDescription(
-                launch.launch_description_sources.AnyLaunchDescriptionSource(
-                    os.path.join(
-                        ros_gz_utils_share_dir,
-                        'launch',
-                        'ignition_bridge.launch.py'
-                    )
-                ),
-                launch_arguments = {
-                    'with_stf': 'true',
-                    'ign_frame_id': 'unitree_go1/base_link/ultrasound_right_sensor',
-                    'ros_frame_id': 'ultraSound_right',
-                    'ign_topic': [
-                        '/world/', world_name, '/model/unitree_go1',
-                        '/link/base_link/sensor/ultrasound_right_sensor/scan/points'
-                    ],
-                    'ros_topic': 'right_ultrasound/points',
-                    'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked',
-                }.items()
-            ),
+            # TODO memory leak
+            #launch.actions.IncludeLaunchDescription(
+            #    launch.launch_description_sources.AnyLaunchDescriptionSource(
+            #        os.path.join(
+            #            ros_gz_utils_share_dir,
+            #            'launch',
+            #            'ignition_bridge.launch.py'
+            #        )
+            #    ),
+            #    launch_arguments = {
+            #        'with_stf': 'true',
+            #        'ign_frame_id': 'unitree_go1/base_link/ultrasound_face_sensor',
+            #        'ros_frame_id': 'ultraSound_face',
+            #        'ign_topic': [
+            #            '/world/', world_name, '/model/unitree_go1',
+            #            '/link/base_link/sensor/ultrasound_face_sensor/scan/points'
+            #        ],
+            #        'ros_topic': 'face_ultrasound/points',
+            #        'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked',
+            #    }.items()
+            #),
+            #launch.actions.IncludeLaunchDescription(
+            #    launch.launch_description_sources.AnyLaunchDescriptionSource(
+            #        os.path.join(
+            #            ros_gz_utils_share_dir,
+            #            'launch',
+            #            'ignition_bridge.launch.py'
+            #        )
+            #    ),
+            #    launch_arguments = {
+            #        'with_stf': 'true',
+            #        'ign_frame_id': 'unitree_go1/base_link/ultrasound_left_sensor',
+            #        'ros_frame_id': 'ultraSound_left',
+            #        'ign_topic': [
+            #            '/world/', world_name, '/model/unitree_go1',
+            #            '/link/base_link/sensor/ultrasound_left_sensor/scan/points'
+            #        ],
+            #        'ros_topic': 'left_ultrasound/points',
+            #        'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked',
+            #    }.items()
+            #),
+            #launch.actions.IncludeLaunchDescription(
+            #    launch.launch_description_sources.AnyLaunchDescriptionSource(
+            #        os.path.join(
+            #            ros_gz_utils_share_dir,
+            #            'launch',
+            #            'ignition_bridge.launch.py'
+            #        )
+            #    ),
+            #    launch_arguments = {
+            #        'with_stf': 'true',
+            #        'ign_frame_id': 'unitree_go1/base_link/ultrasound_right_sensor',
+            #        'ros_frame_id': 'ultraSound_right',
+            #        'ign_topic': [
+            #            '/world/', world_name, '/model/unitree_go1',
+            #            '/link/base_link/sensor/ultrasound_right_sensor/scan/points'
+            #        ],
+            #        'ros_topic': 'right_ultrasound/points',
+            #        'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked',
+            #    }.items()
+            #)
         ])
     ]
 
