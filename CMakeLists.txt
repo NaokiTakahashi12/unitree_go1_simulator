@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.15)
 project(unitree_go1_simulator)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -7,13 +7,29 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(ament_cmake_auto REQUIRED)
+
+ament_auto_find_build_dependencies()
+
+ament_auto_add_library(unitree_go1_simulator SHARED
+    src/joint_trajectory_update_timestamp_node.cpp
+)
+rclcpp_components_register_node(unitree_go1_simulator
+    PLUGIN "unitree_go1_simulator::JointTrajectoryUpdateTimestampNode"
+    EXECUTABLE joint_trajectory_update_timestamp_node
+)
+install(
+    TARGETS unitree_go1_simulator
+    EXPORT unitree_go1_simulator
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
+)
 
 install(
     DIRECTORY
         launch
+        worlds
         config
         rviz
     DESTINATION
