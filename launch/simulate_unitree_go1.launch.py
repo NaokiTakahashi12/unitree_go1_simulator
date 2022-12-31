@@ -212,7 +212,7 @@ def generate_launch_nodes():
                     'with_stf': 'false',
                     'ign_topic': [
                         '/world/', world_name, '/model/unitree_go1',
-                        '/link/base_link/sensor/camera_face_camera/depth_image/points'
+                        '/link/base_link/sensor/camera_face_camera/points'
                     ],
                     'ros_topic': 'face_camera/points',
                     'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked'
@@ -284,7 +284,7 @@ def generate_launch_nodes():
                     'with_stf': 'false',
                     'ign_topic': [
                         '/world/', world_name, '/model/unitree_go1',
-                        '/link/base_link/sensor/camera_left_camera/depth_image/points'
+                        '/link/base_link/sensor/camera_left_camera/points'
                     ],
                     'ros_topic': 'left_camera/points',
                     'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked'
@@ -356,7 +356,7 @@ def generate_launch_nodes():
                     'with_stf': 'false',
                     'ign_topic': [
                         '/world/', world_name, '/model/unitree_go1',
-                        '/link/base_link/sensor/camera_right_camera/depth_image/points'
+                        '/link/base_link/sensor/camera_right_camera/points'
                     ],
                     'ros_topic': 'right_camera/points',
                     'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked'
@@ -428,7 +428,7 @@ def generate_launch_nodes():
                     'with_stf': 'false',
                     'ign_topic': [
                         '/world/', world_name, '/model/unitree_go1',
-                        '/link/base_link/sensor/camera_chin_camera/depth_image/points'
+                        '/link/base_link/sensor/camera_chin_camera/points'
                     ],
                     'ros_topic': 'chin_camera/points',
                     'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked'
@@ -500,7 +500,7 @@ def generate_launch_nodes():
                     'with_stf': 'false',
                     'ign_topic': [
                         '/world/', world_name, '/model/unitree_go1',
-                        '/link/base_link/sensor/camera_rearDown_camera/depth_image/points'
+                        '/link/base_link/sensor/camera_rearDown_camera/points'
                     ],
                     'ros_topic': 'rearDown_camera/points',
                     'convert_args': 'sensor_msgs/msg/PointCloud2[ignition.msgs.PointCloudPacked'
