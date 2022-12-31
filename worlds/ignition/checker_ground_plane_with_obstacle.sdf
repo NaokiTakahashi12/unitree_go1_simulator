@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
   <world name="checker_ground_plane_with_obstacle">
-    <physics name="5.0ms" type="ignored">
-      <max_step_size>5.0e-3</max_step_size>
-      <real_time_factor>1.075</real_time_factor>
+    <physics name="1.0ms" type="ignored">
+      <max_step_size>1.0e-3</max_step_size>
+      <real_time_factor>1.25</real_time_factor>
       <dart>
         <collision_detector>bullet</collision_detector>
         <solver>

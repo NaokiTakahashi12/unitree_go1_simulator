@@ -1,6 +1,5 @@
 quadruped_controller_node:
   ros__parameters:
-    use_sim_time: true
     publish_foot_contacts: true
     publish_joint_states: true
     publish_joint_control: true
@@ -9,15 +8,16 @@ quadruped_controller_node:
     gait:
       knee_orientation: ">>"
       pantograph_leg: false
-      odom_scaler: 1.0
-      max_linear_velocity_x: 0.3
+      odom_scaler: 0.8
+      max_linear_velocity_x: 0.75
       max_linear_velocity_y: 0.3
       max_angular_velocity_z: 0.75
-      com_x_translation: 0.04
-      swing_height: 0.04
-      stance_depth: 0.01
+      com_x_translation: -0.03
+      swing_height: 0.025
+      stance_depth: 0.005
       stance_duration: 0.325
-      nominal_height: 0.25
+      stance_duration: 0.25
+      nominal_height: 0.225
     links_map:
       base: base_link
       left_front:
