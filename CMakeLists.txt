@@ -18,6 +18,54 @@ rclcpp_components_register_node(unitree_go1_simulator
     PLUGIN "unitree_go1_simulator::JointTrajectoryUpdateTimestampNode"
     EXECUTABLE joint_trajectory_update_timestamp_node
 )
+
+add_custom_command(
+    OUTPUT
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/pallet
+    COMMAND
+        gz fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/pallet
+    VERBATIM
+)
+add_custom_command(
+    OUTPUT
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/shelf
+    COMMAND
+        gz fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/shelf
+    VERBATIM
+)
+add_custom_command(
+    OUTPUT
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/shelf_big
+    COMMAND
+        gz fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/shelf_big
+    VERBATIM
+)
+add_custom_command(
+    OUTPUT
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/openrobotics/models/warehouse
+    COMMAND
+        gz fuel download -u https://fuel.gazebosim.org/1.0/OpenRobotics/models/Warehouse
+    VERBATIM
+)
+add_custom_command(
+    OUTPUT
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/mingfei/models/actor
+    COMMAND
+        gz fuel download -u https://fuel.gazebosim.org/1.0/Mingfei/models/actor
+    VERBATIM
+)
+add_custom_target(fuel_download_target
+    DEPENDS
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/pallet
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/shelf
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/shelf_big
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/openrobotics/models/warehouse
+        $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/mingfei/models/actor
+)
+add_dependencies(unitree_go1_simulator
+    fuel_download_target
+)
+
 install(
     TARGETS unitree_go1_simulator
     EXPORT unitree_go1_simulator
