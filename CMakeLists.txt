@@ -19,39 +19,54 @@ rclcpp_components_register_node(unitree_go1_simulator
     EXECUTABLE joint_trajectory_update_timestamp_node
 )
 
+if(NOT "$ENV{GZ_VERSION}" STREQUAL "")
+    set(GAZEBO_DISTRO $ENV{GZ_VERSION})
+elseif(NOT "$ENV{IGN_VERSION}" STREQUAL "")
+    set(GAZEBO_DISTRO $ENV{IGN_VERSION})
+else()
+    message(FATAL_ERROR "Please set GZ_VERSION or IGN_VERSION enviroment variable")
+endif()
+message(STATUS "Set GAZEBO_DISTRO is ${GAZEBO_DISTRO}")
+
+if("${GAZEBO_DISTRO}" STREQUAL "garden")
+    set(GAZEBO_CLI_PREFIX gz)
+else()
+    set(GAZEBO_CLI_PREFIX ign)
+endif()
+
 add_custom_command(
     OUTPUT
         $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/pallet
     COMMAND
-        gz fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/pallet
+        ${GAZEBO_CLI_PREFIX} fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/pallet
     VERBATIM
 )
 add_custom_command(
     OUTPUT
         $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/shelf
     COMMAND
-        gz fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/shelf
+        ${GAZEBO_CLI_PREFIX} fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/shelf
     VERBATIM
 )
 add_custom_command(
     OUTPUT
         $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/movai/models/shelf_big
     COMMAND
-        gz fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/shelf_big
+        ${GAZEBO_CLI_PREFIX} fuel download -u https://fuel.gazebosim.org/1.0/MovAi/models/shelf_big
     VERBATIM
 )
 add_custom_command(
     OUTPUT
         $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/openrobotics/models/warehouse
     COMMAND
-        gz fuel download -u https://fuel.gazebosim.org/1.0/OpenRobotics/models/Warehouse
+        ${GAZEBO_CLI_PREFIX} fuel download -u https://fuel.gazebosim.org/1.0/OpenRobotics/models/Warehouse
     VERBATIM
 )
 add_custom_command(
     OUTPUT
         $ENV{HOME}/.gz/fuel/fuel.gazebosim.org/mingfei/models/actor
     COMMAND
-        gz fuel download -u https://fuel.gazebosim.org/1.0/Mingfei/models/actor
+        ${GAZEBO_CLI_PREFIX} fuel download -u https://fuel.gazebosim.org/1.0/Mingfei/models/actor
     VERBATIM
 )
 add_custom_target(fuel_download_target
