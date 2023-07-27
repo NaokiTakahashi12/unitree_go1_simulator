@@ -85,7 +85,7 @@ def generate_launch_nodes():
                 'use_rviz': launch.substitutions.LaunchConfiguration('use_rviz'),
                 'enable_ros2_control': 'true',
                 'use_real_hardware': 'false',
-                'ignition_gazebo': 'true'
+                'use_gz': 'true'
             }.items()
         ),
         launch.actions.IncludeLaunchDescription(
